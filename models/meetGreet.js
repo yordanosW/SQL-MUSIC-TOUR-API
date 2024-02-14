@@ -3,10 +3,22 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Meet_Greet extends Model {
-    static associate(models) {
-    }}  
-  Meet_Greet.init({
+  class MeetGreet extends Model {
+    static associate({ Band, Event }) {
+      // band
+      MeetGreet.belongsTo(Band, {
+        foreignKey: "band_id",
+        as: "band"
+      })
+      // events 
+      MeetGreet.belongsTo(Event, { 
+        foreignKey: 'event_id', 
+        as: 'events' 
+      })
+    }
+  }
+  
+ MeetGreet.init({
     meet_greet_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -34,5 +46,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'meet_Greets',
     timestamps: false
   });
-  return Meet_Greet;
+  return MeetGreet;
 };

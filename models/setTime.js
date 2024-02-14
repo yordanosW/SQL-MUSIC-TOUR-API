@@ -3,12 +3,26 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Set_Time extends Model {
-    static associate({ models }) {
-    
+  class SetTime extends Model {
+    static associate({Band,Event,Stage }) {
+// band
+  SetTime.belongsTo(Band, { 
+  foreignKey: 'band_id', 
+  as: 'band' 
+})
+//  event
+SetTime.belongsTo(Event,{
+  foreignKey:'event_id',
+  as:'event'
+});
+// stage
+SetTime.belongsTo(Stage, {
+   foreignKey: 'stage_id', 
+   as: 'set_times', 
+  })
     }
   }
-  Set_Time.init({
+  SetTime.init({
     set_time_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -40,5 +54,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'set_Times',
     timestamps: false,
   });
-  return Set_Time;
+  return SetTime;
 };

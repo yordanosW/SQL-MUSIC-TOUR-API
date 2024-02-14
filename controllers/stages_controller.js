@@ -2,7 +2,7 @@
 const stages = require('express').Router();
 const { Op } = require('sequelize');
 const db = require('../models');
-const { Stage } = db;
+const { Stage} = db;
 
 // READ - FIND ALL STAGES
 stages.get('/', async (req, res) => {
